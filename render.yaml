@@ -12,7 +12,7 @@ services:
       - key: PORT
         value: 10000
       - key: DATABASE_URL
-        value: postgresql://postgres:00k57qqzuUboG7Oo@db.gukaanfbewjnjshaxzsu.supabase.co:5432/postgres
+        value: postgresql://postgres.gukaanfbewjnjshaxzsu:00k57qqzuUboG7Oo@aws-0-ap-south-1.pooler.supabase.com:5432/postgres
       - key: JWT_SECRET
         value: aarogya-super-secure-jwt-secret-min-32-chars-long-key-12345
       - key: COOKIE_SECRET
