@@ -4,28 +4,33 @@ import { sendSuccess, sendError } from '../utils/response';
 
 export class DepartmentController {
   static async getAll(_req: Request, res: Response) {
-    const departments = await prisma.department.findMany({
-      where: { isActive: true },
-      include: {
-        _count: {
-          select: { doctors: true }
-        }
-      },
-      orderBy: { name: 'asc' }
-    });
+    try {
+      const departments = await prisma.department.findMany({
+        where: { isActive: true },
+        include: {
+          _count: {
+            select: { doctors: true }
+          }
+        },
+        orderBy: { name: 'asc' }
+      });
 
-    const data = departments.map((dept) => ({
-      id: dept.id,
-      name: dept.name,
-      slug: dept.slug,
-      code: dept.code,
-      description: dept.description,
-      iconName: dept.iconName,
-      headOfDepartment: dept.headOfDepartment,
-      activeDoctorsCount: dept._count.doctors
-    }));
+      const data = departments.map((dept) => ({
+        id: dept.id,
+        name: dept.name,
+        slug: dept.slug,
+        code: dept.code,
+        description: dept.description,
+        iconName: dept.iconName,
+        headOfDepartment: dept.headOfDepartment,
+        activeDoctorsCount: dept._count.doctors
+      }));
 
-    return sendSuccess(res, 'Departments retrieved successfully', data);
+      return sendSuccess(res, 'Departments retrieved successfully', data);
+    } catch (err: any) {
+      console.error('[DepartmentController.getAll Error]:', err);
+      return sendError(res, err.message || 'Failed to fetch departments', 500, 'DATABASE_ERROR');
+    }
   }
 
   static async getBySlug(req: Request, res: Response) {

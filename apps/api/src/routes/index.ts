@@ -8,6 +8,7 @@ import billingRoutes from './billing.routes';
 import privacyRoutes from './privacy.routes';
 import { sendSuccess } from '../utils/response';
 import { env } from '../config/env';
+import { prisma } from '../config/prisma';
 
 const router = Router();
 
@@ -21,6 +22,23 @@ router.get('/health', (_req, res) => {
     uptime: process.uptime(),
     timestamp: new Date().toISOString()
   });
+});
+
+// Diagnostic DB test endpoint
+router.get('/test-db', async (_req, res) => {
+  try {
+    const count = await prisma.department.count();
+    return res.json({ success: true, count, timestamp: new Date().toISOString() });
+  } catch (err: any) {
+    return res.status(500).json({
+      success: false,
+      error: err.name,
+      message: err.message,
+      code: err.code,
+      meta: err.meta,
+      host: env.DATABASE_URL.split('@')[1] ? env.DATABASE_URL.split('@')[1].split('/')[0] : 'none'
+    });
+  }
 });
 
 router.use('/auth', authRoutes);
