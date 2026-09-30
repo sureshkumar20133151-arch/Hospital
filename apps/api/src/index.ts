@@ -63,6 +63,16 @@ app.use((_req, res, next) => {
   next();
 });
 
+// Root Health Endpoint
+app.get('/', (_req, res) => {
+  res.json({
+    success: true,
+    message: `${env.HOSPITAL_NAME} Backend API is online`,
+    docs: '/api/v1',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // API Routes
 app.use('/api/v1', apiV1Router);
 
@@ -72,7 +82,7 @@ app.use(notFoundHandler);
 // Centralized Error Handler
 app.use(errorHandler);
 
-const server = app.listen(env.PORT, () => {
+const server = app.listen(env.PORT, '0.0.0.0', () => {
   console.log(`=======================================================`);
   console.log(`🏥 ${env.HOSPITAL_NAME} API Server`);
   console.log(`🚀 Port: ${env.PORT} | Environment: ${env.NODE_ENV}`);
