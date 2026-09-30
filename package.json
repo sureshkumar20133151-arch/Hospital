@@ -1,0 +1,22 @@
+{
+  "name": "aarogya-hospital-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise Monorepo for Aarogya Multi-Specialty Hospital (India)",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "pnpm --filter @hospital/shared build && pnpm --filter @hospital/api build && pnpm --filter @hospital/web build && pnpm --filter @hospital/admin build",
+    "dev:api": "pnpm --filter @hospital/api dev",
+    "dev:web": "pnpm --filter @hospital/web dev",
+    "dev:admin": "pnpm --filter @hospital/admin dev",
+    "db:generate": "pnpm --filter @hospital/api prisma:generate",
+    "db:migrate": "pnpm --filter @hospital/api prisma:migrate",
+    "db:seed": "pnpm --filter @hospital/api prisma:seed"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+.next/
+out/
+*.log
+.env
+.env.local
+.env.production
+.env.development
+!.env.example
+.DS_Store
+coverage/
+prisma/*.db
+prisma/*.db-journal
+uploads/
+.vercel
