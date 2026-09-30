@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: aarogya-hospital-api
+    runtime: node
+    region: singapore
+    plan: free
+    buildCommand: npm install -g pnpm && pnpm install && pnpm --filter @hospital/shared build && pnpm --filter @hospital/api build
+    startCommand: node apps/api/dist/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        value: postgresql://postgres:00k57qqzuUboG7Oo@db.gukaanfbewjnjshaxzsu.supabase.co:5432/postgres
+      - key: JWT_SECRET
+        value: aarogya-super-secure-jwt-secret-min-32-chars-long-key-12345
+      - key: COOKIE_SECRET
+        value: aarogya-secure-cookie-secret-key-67890
+      - key: HOSPITAL_NAME
+        value: Aarogya Multi-Specialty Hospital
+      - key: HOSPITAL_PHONE
+        value: "+91 80 4000 0000"
+      - key: HOSPITAL_EMERGENCY_HOTLINE
+        value: "1066"
+      - key: HOSPITAL_EMAIL
+        value: support@aarogyahospital.example.com
+      - key: STORAGE_PROVIDER
+        value: local
+      - key: SMS_PROVIDER
+        value: mock
+      - key: EMAIL_PROVIDER
+        value: mock
