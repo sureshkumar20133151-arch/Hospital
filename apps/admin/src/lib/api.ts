@@ -1,5 +1,5 @@
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+  process.env.NEXT_PUBLIC_API_URL || 'https://aarogya-hospital-api-ez31.onrender.com/api/v1';
 
 export class ApiError extends Error {
   constructor(
