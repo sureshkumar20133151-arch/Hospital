@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Calendar,
   Search,
@@ -23,7 +24,8 @@ import {
   CheckCircle2,
   Stethoscope,
   Microscope,
-  ShieldAlert
+  ShieldAlert,
+  Star
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -34,7 +36,8 @@ export default function HomePage() {
       icon: Calendar,
       href: '/book-appointment',
       color: 'from-sky-500 to-sky-600',
-      badge: 'Token: ON-01'
+      badge: 'Token: ON-01',
+      img: '/images/doctor_consultation.jpg'
     },
     {
       title: 'Direct Walk-in OPD (Line 2)',
@@ -42,7 +45,8 @@ export default function HomePage() {
       icon: Users,
       href: '/departments',
       color: 'from-teal-500 to-teal-600',
-      badge: 'Token: WK-01'
+      badge: 'Token: WK-01',
+      img: '/images/nurse_care.jpg'
     },
     {
       title: '24/7 In-House Pharmacy',
@@ -50,7 +54,8 @@ export default function HomePage() {
       icon: Pill,
       href: '/departments',
       color: 'from-emerald-500 to-emerald-600',
-      badge: '24 Hours'
+      badge: '24 Hours',
+      img: '/images/pharmacy_store.jpg'
     },
     {
       title: 'NABL Diagnostic Lab & Reports',
@@ -58,13 +63,14 @@ export default function HomePage() {
       icon: Microscope,
       href: '/dashboard/reports',
       color: 'from-indigo-500 to-indigo-600',
-      badge: 'Protected'
+      badge: 'Protected',
+      img: '/images/hospital_building.jpg'
     }
   ];
 
   const specialties = [
     {
-      name: 'Cardiology',
+      name: 'Cardiology & Cath Lab',
       slug: 'cardiology',
       desc: 'Interventional cardiology, heart failure clinic, 24x7 emergency Cath Lab.',
       icon: HeartPulse,
@@ -116,35 +122,36 @@ export default function HomePage() {
 
   return (
     <div className="bg-slate-50 min-h-screen">
-      {/* Hero Section with Rich Multi-Specialty Hospital Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-sky-50/80 via-white to-slate-50 pt-10 pb-20 border-b border-slate-200">
+      {/* Hero Section with Doctor Team Imagery and Dual Queue */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-sky-50/90 via-white to-slate-50 pt-8 pb-16 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Column: Heading & CTAs */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Column: Heading, Subtitle & CTAs */}
             <div className="lg:col-span-7 text-left">
-              <div className="inline-flex items-center gap-2 bg-sky-100 text-sky-900 text-xs font-bold px-3 py-1.5 rounded-full mb-5 border border-sky-200">
+              <div className="inline-flex items-center gap-2 bg-sky-100 text-sky-900 text-xs font-bold px-3.5 py-1.5 rounded-full mb-5 border border-sky-200 shadow-sm">
                 <Sparkles className="w-3.5 h-3.5 text-sky-600" />
-                <span>NABH Accredited Tertiary Care Hospital • Madurai / India</span>
+                <span>NABH Accredited Multi-Specialty Hospital • Madurai / India</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
                 World-Class Healthcare,{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-teal-600 to-emerald-600">
-                  Trusted Specialists
+                  Senior Specialists
                 </span>{' '}
                 & Zero-Wait OPD.
               </h1>
 
               <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-                Serving thousands of families with advanced multi-specialty care. Choose your preferred queue: <strong>Pre-book online for scheduled slots (ON-Tokens)</strong> or <strong>walk in directly at reception (WK-Tokens)</strong>.
+                Compassionate medical treatment by board-certified doctors. Experience our smart queue system: <strong>Book online for scheduled slots (ON-Tokens)</strong> or <strong>walk in directly at reception (WK-Tokens)</strong>.
               </p>
 
-              {/* Action Buttons: Line 1 vs Line 2 */}
+              {/* Action Buttons */}
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/book-appointment"
-                  className="bg-gradient-to-r from-sky-600 to-teal-600 hover:from-sky-700 hover:to-teal-700 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg transition-all flex items-center gap-2.5 text-base hover:scale-[1.02]"
+                  className="bg-gradient-to-r from-sky-600 to-teal-600 hover:from-sky-700 hover:to-teal-700 text-white font-bold px-7 py-4 rounded-xl shadow-lg transition-all flex items-center gap-2.5 text-base hover:scale-[1.02]"
                 >
                   <Calendar className="w-5 h-5" />
                   <span>Book Online OPD (Line 1: ON-Token)</span>
@@ -152,10 +159,10 @@ export default function HomePage() {
 
                 <Link
                   href="/doctors"
-                  className="bg-white hover:bg-slate-100 text-slate-800 font-bold px-6 py-3.5 rounded-xl border border-slate-300 shadow-sm transition-all flex items-center gap-2 text-base"
+                  className="bg-white hover:bg-slate-100 text-slate-800 font-bold px-6 py-4 rounded-xl border border-slate-300 shadow-sm transition-all flex items-center gap-2 text-base"
                 >
                   <Search className="w-5 h-5 text-slate-600" />
-                  <span>Find Doctors</span>
+                  <span>Explore Doctors</span>
                 </Link>
               </div>
 
@@ -171,86 +178,99 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>DPDP Act 2023 Data Privacy</span>
+                  <span>24/7 In-House Pharmacy & Lab</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Hero Interactive Queue & Emergency Card */}
-            <div className="lg:col-span-5">
-              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-sky-100/50 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+            {/* Right Column: Hero Visual Showcase (Real Doctor Team Picture + Floating Cards) */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white group">
+                {/* Main Hero Doctor Team Photo */}
+                <div className="relative h-[380px] sm:h-[420px] w-full">
+                  <Image
+                    src="/images/doctors_team.jpg"
+                    alt="Aarogya Multi-Specialty Hospital Medical Team of Doctors and Nurses"
+                    fill
+                    priority
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  {/* Photo Caption Overlay */}
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="flex text-amber-400">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs font-bold text-slate-200">NABH Certified Senior Consultants</span>
+                    </div>
+                    <div className="text-sm font-extrabold text-white">
+                      45+ Full-Time Specialists & 24/7 Trauma Team
+                    </div>
+                  </div>
+                </div>
 
-                <div className="flex items-center justify-between pb-5 border-b border-slate-100">
+                {/* Floating Badge 1: 24x7 Emergency Responders */}
+                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-slate-100 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold">
+                    <Ambulance className="w-5 h-5" />
+                  </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-sky-600 block">
-                      Live Hospital Operations
-                    </span>
-                    <h3 className="text-lg font-extrabold text-slate-900 mt-0.5">
-                      OPD Queue & Emergency Desk
-                    </h3>
-                  </div>
-                  <span className="flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded-full border border-emerald-200">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Live Now
-                  </span>
-                </div>
-
-                {/* 2-Queue Visualizer */}
-                <div className="mt-6 space-y-4">
-                  {/* Queue 1 Box */}
-                  <div className="bg-sky-50/70 border border-sky-200/80 rounded-2xl p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="w-7 h-7 rounded-lg bg-sky-600 text-white text-xs font-bold flex items-center justify-center">
-                          ON
-                        </span>
-                        <div>
-                          <div className="text-xs font-bold text-slate-800">Line 1: Online Pre-Booked</div>
-                          <div className="text-[11px] text-slate-500">Website Slot Reservation</div>
-                        </div>
-                      </div>
-                      <span className="text-xs font-mono font-bold bg-white px-2 py-1 rounded border border-sky-200 text-sky-800">
-                        Token: ON-01...
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Queue 2 Box */}
-                  <div className="bg-teal-50/70 border border-teal-200/80 rounded-2xl p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="w-7 h-7 rounded-lg bg-teal-600 text-white text-xs font-bold flex items-center justify-center">
-                          WK
-                        </span>
-                        <div>
-                          <div className="text-xs font-bold text-slate-800">Line 2: Direct Walk-In</div>
-                          <div className="text-[11px] text-slate-500">Front Desk Physical Entry</div>
-                        </div>
-                      </div>
-                      <span className="text-xs font-mono font-bold bg-white px-2 py-1 rounded border border-teal-200 text-teal-800">
-                        Token: WK-01...
-                      </span>
-                    </div>
+                    <div className="text-[10px] font-bold uppercase text-red-600 tracking-wider">Rapid Response</div>
+                    <div className="text-xs font-black text-slate-900">1066 Ambulance</div>
                   </div>
                 </div>
 
-                {/* Stats Bar */}
-                <div className="grid grid-cols-2 gap-3 mt-6 pt-6 border-t border-slate-100">
-                  <div className="text-center p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                    <div className="text-xl font-black text-slate-900">1066</div>
-                    <div className="text-[11px] font-semibold text-red-600">Ambulance Hotline</div>
+                {/* Floating Badge 2: Live OPD Queue Token */}
+                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-slate-100 flex items-center gap-2.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></div>
+                  <div>
+                    <div className="text-[10px] font-bold text-slate-400 uppercase">Live Queue</div>
+                    <div className="text-xs font-bold font-mono text-emerald-700">Token: ON-01</div>
                   </div>
-                  <div className="text-center p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                    <div className="text-xl font-black text-slate-900">24x7</div>
-                    <div className="text-[11px] font-semibold text-emerald-600">In-House Pharmacy</div>
+                </div>
+              </div>
+
+              {/* Mini Facility Thumbnails Under Hero Banner */}
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                <div className="bg-white rounded-2xl p-2.5 border border-slate-200 shadow-sm flex items-center gap-3">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0">
+                    <Image
+                      src="/images/doctor_consultation.jpg"
+                      alt="Doctor Consultation OPD"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-slate-900">OPD Consultation</div>
+                    <div className="text-[10px] text-slate-500">Dual Line Queue</div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-2xl p-2.5 border border-slate-200 shadow-sm flex items-center gap-3">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0">
+                    <Image
+                      src="/images/pharmacy_store.jpg"
+                      alt="In-house Pharmacy"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-slate-900">24/7 Pharmacy</div>
+                    <div className="text-[10px] text-emerald-600 font-semibold">Block A Ground Floor</div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
-          {/* Quick Action Grid */}
+          {/* Quick Action Grid with Photographic Visuals */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
             {quickActions.map((action) => {
               const Icon = action.icon;
@@ -258,36 +278,49 @@ export default function HomePage() {
                 <Link
                   key={action.title}
                   href={action.href}
-                  className="group bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:border-sky-300 transition-all flex flex-col justify-between"
+                  className="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-sky-300 transition-all flex flex-col justify-between"
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-tr ${action.color} flex items-center justify-center text-white shadow-sm`}>
-                        <Icon className="w-6 h-6" />
-                      </div>
-                      {action.badge && (
-                        <span className="text-[11px] font-semibold uppercase tracking-wider bg-sky-50 text-sky-800 border border-sky-100 px-2.5 py-0.5 rounded-full">
-                          {action.badge}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
-                      {action.title}
-                    </h3>
-                    <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-                      {action.desc}
-                    </p>
+                  <div className="relative h-36 w-full overflow-hidden">
+                    <Image
+                      src={action.img}
+                      alt={action.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+                    {action.badge && (
+                      <span className="absolute top-3 right-3 text-[11px] font-bold uppercase tracking-wider bg-white/95 text-sky-800 px-2.5 py-0.5 rounded-full shadow">
+                        {action.badge}
+                      </span>
+                    )}
                   </div>
-                  <div className="mt-5 flex items-center gap-1 text-xs font-semibold text-sky-600 group-hover:translate-x-1 transition-transform">
-                    <span>Access service</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                  
+                  <div className="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className={`w-8 h-8 rounded-lg bg-gradient-to-tr ${action.color} flex items-center justify-center text-white shrink-0`}>
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <h3 className="text-base font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
+                          {action.title}
+                        </h3>
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed">
+                        {action.desc}
+                      </p>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1 text-xs font-semibold text-sky-600 group-hover:translate-x-1 transition-transform">
+                      <span>Access service</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
                   </div>
                 </Link>
               );
             })}
           </div>
 
-          {/* Key Numbers Bar */}
+          {/* Key Hospital Metrics */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
             {hospitalStats.map((stat) => (
               <div key={stat.label} className="text-center">
